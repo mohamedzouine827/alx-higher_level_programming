@@ -16,7 +16,7 @@ if "__main__" == __name__:
     s = argv[4]
 
     # Execute the SQL query
-    query = ("SELECT * FROM states WHERE name LIKE '{}%' "
+    query = ("SELECT * FROM states WHERE name LIKE = %s"
              .format(s))
     cur.execute(query, (s,))
 
