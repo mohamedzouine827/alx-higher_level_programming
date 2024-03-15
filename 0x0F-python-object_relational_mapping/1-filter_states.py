@@ -6,17 +6,23 @@ import MySQLdb
 from sys import argv
 
 if "__main__" == __name__:
-    data = MySQLdb.connect(host="localhost", port=3306,
-                           suser=argv[1], passwd=argv[2], db=argv[3])
+    # Establish connection to the MySQL server
+    db = MySQLdb.connect(host="localhost", port=3306,
+                         user=argv[1], passwd=argv[2], db=argv[3])
 
-    cur = data.cursor()
+    # Create a cursor object
+    cur = db.cursor()
 
-    # Execute the query
+    # Execute the SQL query
     cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
-    finaldata = cur.fetchall()
+    # Fetch all the rows
+    rows = cur.fetchall()
 
-    for dt in finaldata:
-        print(dt)
+    # Print each row
+    for row in rows:
+        print(row)
 
-    data.close()
+    # Close the cursor and connection
+    cur.close()
+    db.close()
