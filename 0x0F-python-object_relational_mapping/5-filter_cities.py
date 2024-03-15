@@ -11,8 +11,9 @@ if "__main__" == __name__:
 
     cur = data.cursor()
 
-    cur.execute("SELECT cities.id, cities.name, states.name FROM cities "
+    cur.execute("SELECT cities.name FROM cities "
                 "JOIN states ON cities.state_id = states.id "
+                "WHERE states.name = %s "
                 "ORDER BY cities.id ASC", (argv[4],))
 
     finaldata = cur.fetchall()
