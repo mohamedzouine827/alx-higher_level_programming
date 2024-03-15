@@ -14,7 +14,7 @@ if "__main__" == __name__:
     cur.execute("SELECT cities.name FROM cities "
                 "JOIN states ON cities.state_id = states.id "
                 "WHERE states.name = %s "
-                "ORDER BY cities.id ASC", (argv[4],))
+                "ORDER BY cities.id ASC", (argv[4] + '%',))
 
     finaldata = cur.fetchall()
 
