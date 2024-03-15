@@ -17,6 +17,7 @@ if "__main__" == __name__:
 
     # Execute the SQL query
     query = ("SELECT * FROM states WHERE name LIKE = %s"
+             "ORDER BY id ASC"
              .format(s))
     cur.execute(query, (s,))
 
