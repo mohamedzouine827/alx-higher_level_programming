@@ -14,20 +14,15 @@ if "__main__" == __name__:
         db=argv[3]
     )
 
-    cur = data.cursor()
-
-    cur.execute(
-        "SELECT cities.name FROM cities "
-        "JOIN states ON cities.state_id = states.id "
-        "WHERE states.name = %s "
-        "ORDER BY cities.id ASC",
-        (argv[4],)
+    state_name = argv[4]
+    cursor = data.cursor()
+    cursor.execute(
+        'SELECT cities.name FROM cities' +
+        ' INNER JOIN states ON cities.state_id = states.id' +
+        ' WHERE CAST(states.name AS BINARY) = %s' +
+        ' ORDER BY cities.id ASC;',
+        [state_name]
     )
-
-    finaldata = cur.fetchall()
-
-    for dt in finaldata:
-        print(dt)
-
-    cur.close()
+    results = cursor.fetchall()
+    print(', '.join(map(lambda x: x[0], results)))
     data.close()
