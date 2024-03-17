@@ -20,8 +20,8 @@ if __name__ == "__main__":
 
     session = sessionmaker(bind=en)
     s = session()
-    state = s.query(State).order_by(State.id).first()
-    if state:
-        print(f"{state.id}: {state.name}")
+    myStates = s.query(State).order_by(State.id).first()
+    if myStates:
+        print(f"{myStates.id}: {myStates.name}")
     else:
         print("Nothing")
