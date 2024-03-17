@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     session = sessionmaker(bind=en)
     s = session()
-    myStates = s.query(State).order_by(State.id)
+    myStates = s.query(State).order_by(State.id).first()
     if myStates:
         for state in myStates:
             print(f"{state.id}: {state.name}")
