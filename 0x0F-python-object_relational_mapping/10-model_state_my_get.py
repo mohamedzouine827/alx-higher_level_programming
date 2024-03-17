@@ -16,7 +16,6 @@ if __name__ == "__main__":
         b,
         c),
         pool_pre_ping=True)
-    Base.metadata.create_all(en)
     nameFounded = sys.argv[4]
 
     session = sessionmaker(bind=en)
