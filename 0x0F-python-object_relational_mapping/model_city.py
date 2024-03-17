@@ -3,10 +3,9 @@
 
 
 import sqlalchemy as sql
-from sqlalchemy import Column, Integer, String, MetaData
-from sqlalchemy.ext.declarative import declarative_base
-data = MetaData()
-Base = declarative_base(metadata=data)
+from sqlalchemy import Column, Integer, String, Foreignkey
+from sqlalchemy.orm import relationship
+from model_state import Base
 
 
 class State(Base):
