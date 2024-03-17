@@ -2,23 +2,28 @@
 """Model state """
 
 
-from sys import argv
 from model_state import Base, State
+import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3066/{}".
-                           format(argv[1], argv[2], argv[3]),
-                           pool_pre_ping=True)
-    # Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    a = sys.argv[1]
+    b = sys.argv[2]
+    c = sys.argv[3]
+    en = create_engine('mysql+mysqldb://{}:{}@localhost:3066/{}'.format(
+        a,
+        b,
+        c),
+        pool_pre_ping=True)
+    nameFounded = sys.argv[4]
 
-    def add_state_to_database(n):
-        new_state = State(name=n)
-        session.add(new_state)
-        session.commit()
-    add_state_to_database("Louisiana")
-    res = session.query(State).order_by(State.id).all()
-    print(f"{len(res)}")
+    session = sessionmaker(bind=en)
+    s = session()
+
+    newSate = State(name="Louisiana")
+    s.add(newSate)
+    s.commit()
+
+    length = s.query(State).order_by(State.id)
+    print(f"{len(length)}")
