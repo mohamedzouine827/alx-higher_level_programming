@@ -3,16 +3,27 @@
 
 
 from model_state import Base, State
-from sys import argv
+import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
-    engine = create_engine("mysql+mysqldb://{}:{}@localhost:3066/{}".
-                           format(argv[1], argv[2], argv[3]),
-                           pool_pre_ping=True)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    nameCheck = argv[4]
-    id_state = session.query(State).filter(State.name == nameCheck).first()
-    print(f"{id_state.id}" if id_state else "Not found")
+    a = sys.argv[1]
+    b = sys.argv[2]
+    c = sys.argv[3]
+    en = create_engine('mysql+mysqldb://{}:{}@localhost:3066/{}'.format(
+        a,
+        b,
+        c),
+        pool_pre_ping=True)
+    Base.metadata.create_all(en)
+    nameFounded = sys.argv[4]
+
+    session = sessionmaker(bind=en)
+    s = session()
+
+    nameCoorect = s.query(State).filter(State.name == nameFounded).first()
+    if nameCoorect:
+        print("{}".format(nameFounded.id))
+    else:
+        print("Not found")
