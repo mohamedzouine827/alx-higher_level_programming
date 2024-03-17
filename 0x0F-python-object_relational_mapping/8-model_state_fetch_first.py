@@ -2,7 +2,7 @@
 """prints the first state"""
 
 
-from sys import argv
+import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
