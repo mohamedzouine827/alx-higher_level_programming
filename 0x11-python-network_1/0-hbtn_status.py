@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """urllib to fetch data"""
 
-import urllib.request as l
+import urllib.request as ul
 
 url = "https://alx-intranet.hbtn.io/status"
-with l.urlopen(url) as response:
+with ul.urlopen(url) as response:
     html = response.read()
     print("Body response:")
     print("\t- type: {}".format(type(html)))
