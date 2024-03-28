@@ -3,6 +3,7 @@
 
 
 def find_peak(list_of_integers):
+    """Algorithms for list of integers."""
     if not list_of_integers:
         return None
 
