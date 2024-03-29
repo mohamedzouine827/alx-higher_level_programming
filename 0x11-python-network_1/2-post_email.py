@@ -5,6 +5,7 @@
 from sys import argv
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
+import urllib
 
 if __name__ == "__main__":
     email = argv[2]
@@ -15,6 +16,5 @@ if __name__ == "__main__":
     values = urlencode(data)
     values = values.encode('ascii')
 
-    req = Request(url, data)
-    with urlopen(req) as response:
+    with urllib.request.urlopen(url, values) as response:
         print(response.read().decode('utf-8'))
