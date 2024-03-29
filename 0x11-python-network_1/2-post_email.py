@@ -19,4 +19,4 @@ if __name__ == "__main__":
     with urlopen(req) as response:
         html = response.read()
 
-    print(html.decode('utf-8'))
+    print(html.read().decode('utf-8'))
